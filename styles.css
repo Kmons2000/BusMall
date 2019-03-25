@@ -1,0 +1,12 @@
+nav ul li {
+    list-style: none;
+    border: 1px solid black;
+    float: right;
+    margin: 5px;
+    padding: 3px;
+    font-size: 18px;
+}
+
+ul li:hover {
+    background-color: skyblue;
+}
