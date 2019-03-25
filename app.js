@@ -1,36 +1,105 @@
 'use strict';
 
-var products = [];
+var globalClicks = 0;
 
-var Product = function(src) {
-    this.source = src;
+function Product(name, src) {
+    this.name = name;
+    this.src = src;
     this.totalClicks = 0;
     this.totalViews = 0;
-    prodcuts.push[this];
+    Product.all.push(this);
 }
 
-function displayRandomImg() {
-    var imgPlace = Math.floor(Math.random * products.length);
-    return products[imgPlace];
+Product.all = [];
+
+new Product('bag','img/bag.jpg');
+new Product('banana','img/banana.jpg');
+new Product('bathroom','img/bathroom.jpg');
+new Product('boots','img/boots.jpg');
+new Product('breakfast','img/breakfast.jpg');
+new Product('bubblegum','img/bubblegum.jpg');
+new Product('chair','img/chair.jpg');
+new Product('cthulhu','img/cthulhu.jpg');
+new Product('dog-duck','img/dog-duck.jpg');
+new Product('dragon','img/dragon.jpg');
+new Product('pen','img/pen.jpg');
+new Product('pet sweep','img/pet-sweep.jpg');
+new Product('scissors','img/scissors.jpg');
+new Product('shark','img/shark.jpg');
+new Product('sweep','img/sweep.png');
+new Product('tauntaun','img/tauntaun.jpg');
+new Product('unicorn','img/unicorn.jpg');
+new Product('usb','img/usb.gif');
+new Product('water can','img/water-can.jpg');
+new Product('wine glass','img/wine-glass.jpg');
+
+function randomForImg() {
+    var randomNumber = Math.random() * Product.all.length;
+    var imgPlace = Math.floor(randomNumber);
+    return imgPlace;
 }
 
- var bag = new Product(img/bag.jpg);
- var banana = new Product(img/banana.jpg);
- var bathroom = new Product(img/bathroom.jpg);
- var boots = new Product(img/boots.jpg);
- var breakfast = new Product(img/breakfast.jpg);
- var bubblegum = new Product(img/bubblegum.jpg);
- var chair = new Product(img/chair.jpg);
- var cthulu = new Product(img/cthulu.jpg);
- var dogDuck = new Product(img/dog-duck.jpg);
- var dragon = new Product(img/dragon.jpg);
- var pen = new Product(img/pen.jpg);
- var petSweep = new Product(img/pet-sweep.jpg);
- var scissors = new Product(img/scissors.jpg);
- var shark = new Product(img/shark.jpg);
- var sweep = new Product(img/sweep.png);
- var tauntaun = new Product(img/tauntaun.jpg);
- var unicorn = new Product(img/unicorn.jpg);
- var usb = new Product(img/usb.gif);
- var waterCan = new Product(img/water-can.jpg);
- var wineGlass = new Product(img/wine-glass.jpg);
+ function createImg() {
+     var randomA = Product.all[randomForImg()]
+     randomA.totalViews++;
+     var imgOne = document.getElementById('firstImg');
+     imgOne.setAttribute('src', randomA.src)
+     imgOne.setAttribute("width", "150");
+     imgOne.setAttribute("height", "150");
+     imgOne.setAttribute("data-name", randomA.name)
+     var randomB = Product.all[randomForImg()]
+     randomB.totalViews++;
+     var imgTwo = document.getElementById('secondImg');
+     imgTwo.setAttribute('src', randomB.src)
+     imgTwo.setAttribute("width", "150");
+     imgTwo.setAttribute("height", "150");
+     imgTwo.setAttribute("data-name", randomB.name)
+     var randomC = Product.all[randomForImg()]
+     randomC.totalViews++;
+     var imgThree = document.getElementById('thirdImg');
+     imgThree.setAttribute('src', randomC.src)
+     imgThree.setAttribute("width", "150");
+     imgThree.setAttribute("height", "150");
+     imgThree.setAttribute("data-name", randomC.name)
+ }
+
+ createImg();
+
+ function handleClicks(event) {
+     console.log('something was clicked')
+     globalClicks++;
+     for( var i = 0; i < Product.all.length; i++){
+        if(event.target.getAttribute('data-name') === Product.all[i].name){
+            Product.all[i].totalClicks++
+            console.log( Product.all[i]);
+
+            break;
+        }
+     }
+     if(globalClicks >= 25){
+        displayResults();
+        document.getElementById('firstImg').removeEventListener('click', handleClicks)
+        document.getElementById('secondImg').removeEventListener('click', handleClicks)
+        document.getElementById('thirdImg').removeEventListener('click', handleClicks)
+     } else {
+         createImg();
+     }
+ }
+
+ document.getElementById('firstImg').addEventListener('click', handleClicks)
+ document.getElementById('secondImg').addEventListener('click', handleClicks)
+ document.getElementById('thirdImg').addEventListener('click', handleClicks)
+
+function percentOfViews(i) {
+        var percent = (Product.all[i].totalClicks / Product.all[i].totalViews) * 100;
+    return percent;
+}
+
+function displayResults() {
+    var printResult = document.getElementById('results');
+    for(var i = 0; i < Product.all.length; i++){
+        var resultItem = document.createElement('li');
+         resultItem.textContent = Product.all[i].name + ' was clicked ' + Product.all[i].totalClicks + ' times, and was clicked ' + percentOfViews(i) + '% of the time it showed up.'
+         printResult.appendChild(resultItem);
+    }
+}

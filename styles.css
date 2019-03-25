@@ -10,3 +10,12 @@ nav ul li {
 ul li:hover {
     background-color: skyblue;
 }
+
+body {
+    background-color: lightpink;
+    font-family: 'Merriweather', serif;
+}
+
+h1 {
+    
+}
