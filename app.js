@@ -96,7 +96,7 @@ document.getElementById('secondImg').addEventListener('click', handleClicks);
 document.getElementById('thirdImg').addEventListener('click', handleClicks);
 
 function percentOfViews(i) {
-  var percent = (Product.all[i].totalClicks / Product.all[i].totalViews) * 100;
+  var percent = ((Product.all[i].totalClicks / Product.all[i].totalViews) * 100).toFixed(1);
   return percent;
 }
 
