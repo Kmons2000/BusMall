@@ -61,10 +61,10 @@ function createImg() {
   imgThree.setAttribute('width', '200');
   imgThree.setAttribute('height', '200');
   imgThree.setAttribute('data-name', randomC.name);
-  if(imgOne === imgTwo) {
+  if(randomA === randomB) {
     createImg();
   }
-  if(imgOne === imgThree || imgTwo === imgThree){
+  if(randomA === randomC || randomB === randomC){
     createImg();
   }
 
