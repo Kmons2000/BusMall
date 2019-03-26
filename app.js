@@ -61,6 +61,13 @@ function createImg() {
   imgThree.setAttribute('width', '200');
   imgThree.setAttribute('height', '200');
   imgThree.setAttribute('data-name', randomC.name);
+  if(imgOne === imgTwo) {
+    createImg();
+  }
+  if(imgOne === imgThree || imgTwo === imgThree){
+    createImg();
+  }
+
 }
 
 createImg();
@@ -71,8 +78,6 @@ function handleClicks(event) {
   for( var i = 0; i < Product.all.length; i++){
     if(event.target.getAttribute('data-name') === Product.all[i].name){
       Product.all[i].totalClicks++;
-      console.log( Product.all[i]);
-
       break;
     }
   }
