@@ -101,10 +101,55 @@ function percentOfViews(i) {
 }
 
 function displayResults() {
-  var printResult = document.getElementById('results');
-  for(var i = 0; i < Product.all.length; i++){
-    var resultItem = document.createElement('li');
-    resultItem.textContent = Product.all[i].name + ' was clicked ' + Product.all[i].totalClicks + ' times, and was clicked ' + percentOfViews(i) + '% of the time it showed up.';
-    printResult.appendChild(resultItem);
-  }
+  var ctx = document.getElementById('myChart').getContext('2d');
+  console.log(Product.all[0].totalClicks);
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [Product.all[0].name,Product.all[1].name,Product.all[2].name,Product.all[3].name,Product.all[4].name,Product.all[5].name,Product.all[6].name,Product.all[7].name,Product.all[8].name,Product.all[9].name,Product.all[10].name,Product.all[11].name,Product.all[12].name,Product.all[13].name,Product.all[14].name,Product.all[15].name,Product.all[16].name,Product.all[17].name,Product.all[18].name,Product.all[19].name],
+      datasets: [{
+        label: 'Number of Votes',
+        data: [Product.all[0].totalClicks,Product.all[1].totalClicks,Product.all[2].totalClicks,Product.all[3].totalClicks,Product.all[4].totalClicks,Product.all[5].totalClicks,Product.all[6].totalClicks,Product.all[7].totalClicks,Product.all[8].totalClicks,Product.all[9].totalClicks,Product.all[10].totalClicks,Product.all[11].totalClicks,Product.all[12].totalClicks,Product.all[13].totalClicks,Product.all[14].totalClicks,Product.all[15].totalClicks,Product.all[16].totalClicks,Product.all[17].totalClicks,Product.all[18].totalClicks,Product.all[19].totalClicks],
+        backgroundColor: 'skyblue',
+        borderColor: 'blue',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+
+//   myChart = new Chart(ctx, {
+//     type: 'bar',
+//     data: {
+//       labels: [Product.all[0].name,Product.all[1].name,Product.all[2].name,Product.all[3].name,Product.all[4].name,Product.all[5].name,Product.all[6].name,Product.all[7].name,Product.all[8].name,Product.all[9].name,Product.all[10].name,Product.all[11].name,Product.all[12].name,Product.all[13].name,Product.all[14].name,Product.all[15].name,Product.all[16].name,Product.all[17].name,Product.all[18].name,Product.all[19].name],
+//       datasets: [{
+//         label: 'Number of Votes',
+//         data: [Product.all[0].totalClicks/Product.all[0].totalViews,Product.all[1].totalClicks/Product.all[1].totalViews,Product.all[2].totalClicks/Product.all[2].totalViews,Product.all[3].totalClicks/Product.all[3].totalViews,Product.all[4].totalClicks/Product.all[4].totalViews,Product.all[5].totalClicks/Product.all[5].totalViews,Product.all[6].totalClicks/Product.all[6].totalViews,Product.all[7].totalClicks/Product.all[7].totalViews,Product.all[8].totalClicks/Product.all[8].totalViews,Product.all[9].totalClicks/Product.all[9].totalViews,Product.all[10].totalClicks/Product.all[10].totalViews,Product.all[11].totalClicks/Product.all[11].totalViews,Product.all[12].totalClicks/Product.all[12].totalViews,Product.all[13].totalClicks/Product.all[13].totalViews,Product.all[14].totalClicks/Product.all[14].totalViews,Product.all[15].totalClicks/Product.all[15].totalViews,Product.all[16].totalClicks/Product.all[16].totalViews,Product.all[17].totalClicks/Product.all[17].totalViews,Product.all[18].totalClicks/Product.all[18].totalViews,Product.all[19].totalClicks/Product.all[19].totalViews
+//         ],
+//         backgroundColor: 'skyblue',
+//         borderColor: 'blue',
+//         borderWidth: 1
+//       }]
+//     },
+//     options: {
+//       scales: {
+//         yAxes: [{
+//           ticks: {
+//             beginAtZero: true
+//           }
+//         }]
+//       }
+//     }
+//   });
 }
+
+
+
