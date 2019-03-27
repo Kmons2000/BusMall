@@ -133,7 +133,7 @@ function displayResults() {
     data: {
       labels: [Product.all[0].name,Product.all[1].name,Product.all[2].name,Product.all[3].name,Product.all[4].name,Product.all[5].name,Product.all[6].name,Product.all[7].name,Product.all[8].name,Product.all[9].name,Product.all[10].name,Product.all[11].name,Product.all[12].name,Product.all[13].name,Product.all[14].name,Product.all[15].name,Product.all[16].name,Product.all[17].name,Product.all[18].name,Product.all[19].name],
       datasets: [{
-        label: 'Percent of picks to views',
+        label: 'Percent of times picked when viewed',
         data: [percentOfViews(0),percentOfViews(1),percentOfViews(2),percentOfViews(3),percentOfViews(4),percentOfViews(5),percentOfViews(6),percentOfViews(7),percentOfViews(8),percentOfViews(9),percentOfViews(10),percentOfViews(11),percentOfViews(12),percentOfViews(13),percentOfViews(14),percentOfViews(15),percentOfViews(16),percentOfViews(17),percentOfViews(18),percentOfViews(19)
         ],
         backgroundColor: 'skyblue',
