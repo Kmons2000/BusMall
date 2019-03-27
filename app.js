@@ -104,6 +104,8 @@ function displayResults() {
   var ctx = document.getElementById('myChart').getContext('2d');
   console.log(Product.all[0].totalClicks);
   var myChart = new Chart(ctx, {
+    responsive: true,
+    maintainAspectRatio: true,
     type: 'bar',
     data: {
       labels: [Product.all[0].name,Product.all[1].name,Product.all[2].name,Product.all[3].name,Product.all[4].name,Product.all[5].name,Product.all[6].name,Product.all[7].name,Product.all[8].name,Product.all[9].name,Product.all[10].name,Product.all[11].name,Product.all[12].name,Product.all[13].name,Product.all[14].name,Product.all[15].name,Product.all[16].name,Product.all[17].name,Product.all[18].name,Product.all[19].name],
