@@ -18,4 +18,5 @@ body {
 
 div {
     width: 75vw;
+    float: left;
 }
