@@ -70,7 +70,7 @@ function createImg() {
 
 }
 
-createImg();
+
 
 function handleClicks(event) {
   console.log('something was clicked');
@@ -82,7 +82,8 @@ function handleClicks(event) {
     }
   }
   if(globalClicks >= 25){
-    displayResults();
+    localStorage.setItem('data', JSON.stringify(Product.all));
+    displayResults(Product.all);
     document.getElementById('firstImg').removeEventListener('click', handleClicks);
     document.getElementById('secondImg').removeEventListener('click', handleClicks);
     document.getElementById('thirdImg').removeEventListener('click', handleClicks);
@@ -100,7 +101,7 @@ function percentOfViews(i) {
   return percent;
 }
 
-function displayResults() {
+var displayResults = function(array) {
   var ctx = document.getElementById('myChart').getContext('2d');
   console.log(Product.all[0].totalClicks);
   var myChart = new Chart(ctx, {
@@ -108,10 +109,10 @@ function displayResults() {
     maintainAspectRatio: true,
     type: 'bar',
     data: {
-      labels: [Product.all[0].name,Product.all[1].name,Product.all[2].name,Product.all[3].name,Product.all[4].name,Product.all[5].name,Product.all[6].name,Product.all[7].name,Product.all[8].name,Product.all[9].name,Product.all[10].name,Product.all[11].name,Product.all[12].name,Product.all[13].name,Product.all[14].name,Product.all[15].name,Product.all[16].name,Product.all[17].name,Product.all[18].name,Product.all[19].name],
+      labels: [array[0].name,array[1].name,array[2].name,array[3].name,array[4].name,array[5].name,array[6].name,array[7].name,array[8].name,array[9].name,array[10].name,array[11].name,array[12].name,array[13].name,array[14].name,array[15].name,array[16].name,array[17].name,array[18].name,array[19].name],
       datasets: [{
         label: 'Number of Votes',
-        data: [Product.all[0].totalClicks,Product.all[1].totalClicks,Product.all[2].totalClicks,Product.all[3].totalClicks,Product.all[4].totalClicks,Product.all[5].totalClicks,Product.all[6].totalClicks,Product.all[7].totalClicks,Product.all[8].totalClicks,Product.all[9].totalClicks,Product.all[10].totalClicks,Product.all[11].totalClicks,Product.all[12].totalClicks,Product.all[13].totalClicks,Product.all[14].totalClicks,Product.all[15].totalClicks,Product.all[16].totalClicks,Product.all[17].totalClicks,Product.all[18].totalClicks,Product.all[19].totalClicks],
+        data: [array[0].totalClicks,array[1].totalClicks,array[2].totalClicks,array[3].totalClicks,array[4].totalClicks,array[5].totalClicks,array[6].totalClicks,array[7].totalClicks,array[8].totalClicks,array[9].totalClicks,array[10].totalClicks,array[11].totalClicks,array[12].totalClicks,array[13].totalClicks,array[14].totalClicks,array[15].totalClicks,array[16].totalClicks,array[17].totalClicks,array[18].totalClicks,array[19].totalClicks],
         backgroundColor: 'skyblue',
         borderColor: 'blue',
         borderWidth: 1
@@ -128,10 +129,14 @@ function displayResults() {
     }
   });
 
-  percentChart = new Chart(ctx, {
+  ctx = document.getElementById('percentChart').getContext('2d');
+
+  var percentChart = new Chart(ctx, {
+    responsive: true,
+    maintainAspectRatio: true,
     type: 'bar',
     data: {
-      labels: [Product.all[0].name,Product.all[1].name,Product.all[2].name,Product.all[3].name,Product.all[4].name,Product.all[5].name,Product.all[6].name,Product.all[7].name,Product.all[8].name,Product.all[9].name,Product.all[10].name,Product.all[11].name,Product.all[12].name,Product.all[13].name,Product.all[14].name,Product.all[15].name,Product.all[16].name,Product.all[17].name,Product.all[18].name,Product.all[19].name],
+      labels: [array[0].name,array[1].name,array[2].name,array[3].name,array[4].name,array[5].name,array[6].name,array[7].name,array[8].name,array[9].name,array[10].name,array[11].name,array[12].name,array[13].name,array[14].name,array[15].name,array[16].name,array[17].name,array[18].name,array[19].name],
       datasets: [{
         label: 'Percent of times picked when viewed',
         data: [percentOfViews(0),percentOfViews(1),percentOfViews(2),percentOfViews(3),percentOfViews(4),percentOfViews(5),percentOfViews(6),percentOfViews(7),percentOfViews(8),percentOfViews(9),percentOfViews(10),percentOfViews(11),percentOfViews(12),percentOfViews(13),percentOfViews(14),percentOfViews(15),percentOfViews(16),percentOfViews(17),percentOfViews(18),percentOfViews(19)
@@ -151,7 +156,16 @@ function displayResults() {
       }
     }
   });
+};
+
+
+function reloadDisplay() {
+  if(localStorage['data']){
+    Product.all = JSON.parse(localStorage['data']);
+    displayResults(Product.all);
+  } else {
+    createImg();
+  }
 }
 
-
-
+reloadDisplay();
