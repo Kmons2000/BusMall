@@ -20,7 +20,7 @@ new Product('Breakfast','img/breakfast.jpg');
 new Product('Bubblegum','img/bubblegum.jpg');
 new Product('Chair','img/chair.jpg');
 new Product('Cthulhu','img/cthulhu.jpg');
-new Product('Dog-duck','img/dog-duck.jpg');
+new Product('Dog duck','img/dog-duck.jpg');
 new Product('Dragon','img/dragon.jpg');
 new Product('Pen','img/pen.jpg');
 new Product('Pet sweep','img/pet-sweep.jpg');
